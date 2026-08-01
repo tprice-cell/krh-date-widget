@@ -1,0 +1,61 @@
+  <style>
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: transparent;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .date-card {
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 24px;
+      text-align: center;
+
+      background: #fff9e8;
+      border: 5px solid #6f1730;
+      border-radius: 24px;
+    }
+
+    #date {
+      color: #174f38;
+      font-size: clamp(24px, 6vw, 64px);
+      font-weight: 700;
+      line-height: 1.15;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="date-card">
+    <div id="date">Loading today’s date…</div>
+  </div>
+
+  <script>
+    function updateDate() {
+      const today = new Date();
+
+      const formattedDate = new Intl.DateTimeFormat("en-US", {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+      }).format(today);
+
+      document.getElementById("date").textContent = formattedDate;
+    }
+
+    updateDate();
+
+    // Refresh periodically so it changes automatically after midnight.
+    setInterval(updateDate, 60000);
+  </script>
+</body>
+</html>
